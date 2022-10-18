@@ -1,0 +1,144 @@
+[
+    {
+        "icon": "fas fa-qrcode",
+        "title": "Dashboard",
+        "url": "admin/dashboard"
+    },
+
+    {
+        "icon": "fas fa-th-list",
+        "title": "Manage Brand",
+        "children": [
+            {
+                "icon": "fas fa-angle-right",
+                "title": "Manage Brand",
+                "url": "admin/brand"
+            },
+          
+            {
+                "icon": "fas fa-angle-right",
+                "title": "Create Brand",
+                "url": "admin/brand/add"
+            }
+        ]
+    },
+
+    {
+        "icon": "fas fa-th-list",
+        "title": "Manage Product Attribute",
+        "children": [
+            {
+                "icon": "fas fa-angle-right",
+                "title": "Manage Product Attribute",
+                "url": "admin/product_atr"
+            },
+            {
+                "icon": "fas fa-angle-right",
+                "title": "Create Product Attribute",
+                "url": "admin/product_atr/add"
+            }
+        ]
+    },
+
+    {
+        "icon": "fas fa-users",
+        "title": "Manage Users",
+        "children": [
+            {
+                "icon": "fas fa-angle-right",
+                "title": "Active User",
+                "url": "admin/user/list?status=1"
+            },
+            {
+                "icon": "fas fa-angle-right",
+                "title": "Inactive user",
+                "url": "admin/user/list?status=0"
+            },
+            {
+                "icon": "fas fa-angle-right",
+                "title": "Deleted user",
+                "url": "admin/user/list?deleted_at=true"
+            },
+            {
+                "icon": "fas fa-angle-right",
+                "title": "Type 10 user",
+                "url": "admin/user/list?general_user_type=10"
+            },
+            {
+                "icon": "fas fa-angle-right",
+                "title": "Type 300 user",
+                "url": "admin/user/list?general_user_type=300"
+            },
+            {
+                "icon": "fas fa-angle-right",
+                "title": "All Admin",
+                "url": "admin/user/list?user_type=1"
+            },
+            {
+                "icon": "fas fa-angle-right",
+                "title": "All Agent",
+                "url": "admin/user/list?user_type=2"
+            },
+            {
+                "icon": "fas fa-angle-right",
+                "title": "All User",
+                "url": "admin/user/list?user_type=3"
+            }
+        ]
+    },
+
+    {
+        "icon": "fab fa-accusoft",
+        "title": "Manage Features",
+        "url": "admin/featured/create"
+    },
+    {
+        "icon": "fas fa-vr-cardboard",
+        "title": "Manage Banner",
+        "children": [
+            {
+                "icon": "fas fa-angle-right",
+                "title": "Create Banner",
+                "url": "admin/banner/create"
+            },
+            {
+                "icon": "fas fa-angle-right",
+                "title": "Banner List",
+                "url": "admin/banner/list"
+            }
+        ]
+    },
+
+    {
+        "icon": "fas fa-address-book",
+        "title": "Manage Contact",
+        "children": [
+            {
+                "icon": "fas fa-angle-right",
+                "title": "Create Contact",
+                "url": "admin/contact/create"
+            },
+            {
+                "icon": "fas fa-angle-right",
+                "title": "Contact List",
+                "url": "admin/contact/list"
+            }
+        ]
+    },
+    {
+        "icon": "fas fa-user",
+        "title": "Manage Profile",
+        "children": [
+            {
+                "icon": "fas fa-angle-right",
+                "title": "Edit Profile",
+                "url": "admin/edit"
+            },
+            {
+                "icon": "fas fa-angle-right",
+                "title": "Change Password",
+                "url": "admin/change-password/form"
+            }
+        ]
+    }
+]
