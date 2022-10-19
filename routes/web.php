@@ -7,6 +7,7 @@ use App\Http\Controllers\BrandController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\SellerController;
+use App\Http\Controllers\InfoModuleController;
 use App\Http\Controllers\Theme\DashboardController;
 use App\Http\Controllers\ProductAttributeController;
 use App\Http\Controllers\DescriptionModuleController;
@@ -36,6 +37,8 @@ Route::group(['prefix' => 'admin'],function(){
       'middleware' => ['admin_auth']
   ],function(){
    Route::get('dashboard',[DashboardController::class,'dashboard']);
+   Route::get('/logout', [LoginController::class, 'adminLogout'])->name('logout');
+   // Route::get('/logout',[LoginController::class,'adminLogout']);
 
         //Brand
         Route::get('/brand', [BrandController::class, 'index'])->name('indexBrand');
@@ -71,10 +74,14 @@ Route::group(['prefix' => 'admin'],function(){
         Route::get('/description-module/delete/{id}', [DescriptionModuleController::class, 'deleteDesModule'])->name('deleteDesModule');
 
 
-        
-        
-    Route::get('/logout', [LoginController::class, 'adminLogout'])->name('logout');
-   // Route::get('/logout',[LoginController::class,'adminLogout']);
+        // Info Module
+        Route::get('/info-module', [InfoModuleController::class, 'index'])->name('indexInfoModule');
+        Route::get('/info-module/add', [InfoModuleController::class, 'indexAddInfoModule'])->name('indexAddInfoModule');
+        Route::post('/info-module/store', [InfoModuleController::class, 'storeInfoModule'])->name('storeInfoModule');
+        Route::get('/info-module/edit/{id}', [InfoModuleController::class, 'indexEditInfoModule']);
+        Route::post('/info-module/update', [InfoModuleController::class, 'updateInfoModule'])->name('updateInfoModule');
+        Route::get('/info-module/delete/{id}', [InfoModuleController::class, 'deleteInfoModule'])->name('deleteInfoModule');
+    
 
 });
 });
