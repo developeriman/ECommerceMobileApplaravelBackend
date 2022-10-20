@@ -54,7 +54,16 @@ Route::group(['prefix' => 'admin'],function(){
         Route::post('/product_atr/store', [ProductAttributeController::class, 'storeProductAttr'])->name('storeProductAttr');
         Route::get('/product_atr/edit/{id}', [ProductAttributeController::class, 'indexEditProductAttribute']);
         Route::post('/product_atr/update', [ProductAttributeController::class, 'updateProductAttribute'])->name('updateProductAttribute');
-        Route::get('/product_atr/delete/{id}', [ProductAttributeController::class, 'brandDelete'])->name('deleteBrand');
+        Route::get('/product_atr/delete/{id}', [ProductAttributeController::class, 'DeleteProductAttribute'])->name('DeleteProductAttribute');
+     //Product Attributes Values 
+        Route::get('/product_atr/setting/{id}', [ProductAttributeController::class, 'Setting'])->name('Setting');
+        Route::get('/product_atr/setting/delete/{id}', [ProductAttributeController::class, 'DeleteSettingAttributes'])->name('DeleteSettingAttributes');
+        Route::get('/product_atr/setting/edit/{id}', [ProductAttributeController::class, 'indexEditSettingAttributes'])->name('indexEditSettingAttributes');
+        Route::post('/product_atr/setting/', [ProductAttributeController::class, 'storeAttributeValue'])->name('storeAttributeValue');
+
+        Route::post('/product_atr/setting/update', [ProductAttributeController::class, 'updateSettingAttributes'])->name('updateSettingAttributes');
+
+        
 
         // Seller
         Route::get('/seller', [SellerController::class, 'index'])->name('indexSeller');

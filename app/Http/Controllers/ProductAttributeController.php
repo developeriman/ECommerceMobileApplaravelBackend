@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use Whoops\Run;
 use App\Models\Seller;
+use App\Models\Attribute;
 use App\Models\InfoModule;
 use Illuminate\Http\Request;
+use App\Models\AttributeValue;
 use App\Models\ProductAttribute;
 use App\Models\DescriptionModule;
 use Illuminate\Support\Facades\DB;
@@ -15,7 +18,13 @@ class ProductAttributeController extends Controller
 {
     public function index()
     {
-        $product_atr = ProductAttribute::all();
+        $product_atr  = DB::table('tbl_product_attribute')
+            ->leftJoin('tbl_attribute_values', 'tbl_product_attribute.id', '=', 'tbl_attribute_values.attribute_id')
+            ->select('tbl_product_attribute.*', 'tbl_attribute_values.value', 'tbl_attribute_values.price', 'tbl_attribute_values.stock')
+            ->get();
+            
+       
+     
         return view('admin/product_atr', compact('product_atr'));
     }
 
@@ -25,7 +34,7 @@ class ProductAttributeController extends Controller
         $seller = Seller::all();
         $description_module = DescriptionModule::all();
         $info_module = InfoModule::all();
-        return view('admin/add-product_atr', compact('seller', 'description_module','info_module'));
+        return view('admin/add-product_atr', compact('seller', 'description_module', 'info_module'));
     }
 
     public function storeProductAttr(ProductAttributeRequest $request)
@@ -37,7 +46,7 @@ class ProductAttributeController extends Controller
             $productAttribute->seller_id = $request->seller_id;
             $productAttribute->description_module_id = $request->description_module_id;
             $productAttribute->info_module_id = $request->info_module_id;
-         
+
             if ($productAttribute->save()) {
                 DB::commit();
                 return redirect('admin/product_atr');
@@ -54,8 +63,9 @@ class ProductAttributeController extends Controller
         $seller = Seller::orderBy('seller_name')->get();
         $description_module = DescriptionModule::orderBy('desc_name')->get();
         $info_module = InfoModule::orderBy('title')->get();
-        return view('admin/edit-product_atr', ['productAttribute' => $productAttribute,
-         'seller' => $seller,
+        return view('admin/edit-product_atr', [
+            'productAttribute' => $productAttribute,
+            'seller' => $seller,
             'description_module' => $description_module,
             'info_module' => $info_module,
         ]);
@@ -76,10 +86,77 @@ class ProductAttributeController extends Controller
         }
     }
 
-    public function brandDelete($id)
+    public function DeleteProductAttribute($id)
     {
         ProductAttribute::findOrFail($id)->delete();
         return redirect('admin/product_atr');
     }
+    public function Setting($id)
+    {
+        $productAttribute = ProductAttribute::where('id', $id)->first();
+        $productAttributeValue = AttributeValue::where('attribute_id', $id)->get();
+        return view('admin/product_atr-setting', compact('productAttribute', 'productAttributeValue'));
+    }
+
+    // public function storeAttribute(Request $request)
+    // {
+    //     DB::beginTransaction();
+    //     try {
+    //         $productAttribute = new Attribute();
+    //         $productAttribute->attribute_id = $request->attribute_id;
+    //         if ($productAttribute->save()) {
+    //             DB::commit();
+    //             return redirect()->back();
+    //         }
+    //     } catch (\Exception $e) {
+    //         DB::rollback();
+    //         return $e;
+    //     }
+    // }
+
+    public function storeAttributeValue(Request $request)
+    {
+        DB::beginTransaction();
+        try {
+            $productAttribute = new AttributeValue();
+            $productAttribute->attribute_id = $request->attribute_id;
+            $productAttribute->value = $request->value;
+            $productAttribute->price = $request->price;
+            $productAttribute->stock = $request->stock;
+
+            if ($productAttribute->save()) {
+                DB::commit();
+                return redirect()->back();
+            }
+        } catch (\Exception $e) {
+            DB::rollback();
+            return $e;
+        }
+    }
+
+    public function indexEditSettingAttributes($id)
+    {
+        $productAttributeValue = AttributeValue::where('id', $id)->first();
+        return view('admin/edit-product_atr-setting', [
+            'productAttributeValue' => $productAttributeValue]);
+    }
+    public function updateSettingAttributes(Request $request)
+    {
+        try {
+            AttributeValue::where('id', $request->id)->update([
+                'value' => $request->value,
+                'price' => $request->price,
+                'stock' => $request->stock,
+            ]);
+            return redirect('admin/product_atr');
+        } catch (\Exception $e) {
+            return $e;
+        }
+    }
     
+    public function DeleteSettingAttributes($id)
+    {
+        AttributeValue::findOrFail($id)->delete();
+        return redirect()->back();
+    }
 }

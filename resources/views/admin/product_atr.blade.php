@@ -14,10 +14,11 @@
             <table class="table">
                 <thead>
                     <tr>
-                        <th style="width: 20%;">#</th>
+                        <th style="width: 10%;">#</th>
                         <th style="width: 10%;">Name</th>
+                        <th style="width: 20%;">Value</th>
                       
-                        <th style="width: 50%; text-align: center;">Action</th>
+                        <th style="width: 20%; text-align: center;">Action</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -25,6 +26,8 @@
                     <tr>
                         <td>{{ $data->id }}</td>
                         <td>{{ $data->name }}</td>
+                        <td> <span> Value:{{$data->value}} Price:{{$data->price}} Stock:{{$data->stock}}</span></td>
+                       
                         <td style="text-align: center;">
                             <a class="btn btn-info actbtn" title="edit" href="{{ url('admin/product_atr/edit/'.$data->id) }}"><i class="fas fa-edit" title="edit"></i></a>
                             <a class="btn btn-danger actbtn" href="{{ url('/admin/product_atr/delete/'.$data->id) }}"><i class="fas fa-trash" name="delete"></i></a>

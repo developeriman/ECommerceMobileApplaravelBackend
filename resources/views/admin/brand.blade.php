@@ -1,6 +1,8 @@
-@extends('layouts.theme')
+ 
+ @extends('layouts.theme')
 @section('content')
-<div class="card mb-4">
+  
+ <div class="card mb-4">
     <div class="card-body">
         <div class="d-flex justify-content-between">
             <div>
@@ -21,7 +23,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach($brand as $data)
+                    @foreach ($brand as $data)
                     <tr>
                         <td>{{ $data->id }}</td>
                         <td>{{ $data->name }}</td>
@@ -35,5 +37,5 @@
             </table>
         </div>
     </div>
-</div>
+</div> 
 @endsection

@@ -21,8 +21,8 @@
                             @endif
                         </div>
                         <div class="mb-3 col-6">
-                            <label for="seller_name" class="control-label mb-1">Seller Name</label>
-                            <select id="seller_name" class="form-control" name="seller_id">
+                            <label for="seller_name" class="control-label mb-1"></label>
+                            <select id="seller_name" class="form-control" name="seller_id">Seller Name
                                 @foreach ($seller as $seller)
                                     <option value="{{ $seller->id }}"
                                         {{ $seller->id == $productAttribute->seller_id ? 'selected' : '' }}>
@@ -35,7 +35,7 @@
 
                     <div class="row pl-3">
                         <div class="mb-3 col-6">
-                            <label for="desc_name" class="control-label mb-1">Seller Name</label>
+                            <label for="desc_name" class="control-label mb-1"> Select A Description Module</label>
                             <select id="desc_name" class="form-control" name="description_module_id">
                                 @foreach ($description_module as $description_module)
                                     <option value="{{ $description_module->id }}"
@@ -47,7 +47,7 @@
                         </div>
 
                         <div class="mb-3 col-6">
-                            <label for="title" class="control-label mb-1">Title </label>
+                            <label for="title" class="control-label mb-1">Select a Info Module </label>
                             <select id="title" class="form-control" name="info_module_id">
                                 @foreach ($info_module as $info_module)
                                     <option value="{{ $info_module->id }}"
