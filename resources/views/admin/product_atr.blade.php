@@ -22,11 +22,16 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach($product_atr as $data)
+                    @foreach($product_attributes as $data)
                     <tr>
                         <td>{{ $data->id }}</td>
                         <td>{{ $data->name }}</td>
-                        <td> <span> Value:{{$data->value}} Price:{{$data->price}} Stock:{{$data->stock}}</span></td>
+                        <td>
+                            @foreach($data->attributes_values as $attribute_value)
+                             <span>Value:{{$attribute_value->value}} Price:{{$attribute_value->price}} 
+                                Stock:{{$attribute_value->stock}} </span> <br>
+                            @endforeach
+                            </td>
                        
                         <td style="text-align: center;">
                             <a class="btn btn-info actbtn" title="edit" href="{{ url('admin/product_atr/edit/'.$data->id) }}"><i class="fas fa-edit" title="edit"></i></a>

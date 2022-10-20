@@ -18,14 +18,18 @@ class ProductAttributeController extends Controller
 {
     public function index()
     {
-        $product_atr  = DB::table('tbl_product_attribute')
-            ->leftJoin('tbl_attribute_values', 'tbl_product_attribute.id', '=', 'tbl_attribute_values.attribute_id')
-            ->select('tbl_product_attribute.*', 'tbl_attribute_values.value', 'tbl_attribute_values.price', 'tbl_attribute_values.stock')
-            ->get();
-            
-       
+        $product_attributes =DB::table('tbl_product_attribute')->get();
+
+        foreach($product_attributes as $value){
+            $product_attributes_values = DB::table('tbl_attribute_values')->where('attribute_id',$value->id)->get();
+            $value->attributes_values = $product_attributes_values; 
+        }
+        // $product_atr  = DB::table('tbl_product_attribute')
+        //     ->leftJoin('tbl_attribute_values', 'tbl_product_attribute.id', '=', 'tbl_attribute_values.attribute_id')
+        //     ->select('tbl_product_attribute.*', 'tbl_attribute_values.value', 'tbl_attribute_values.price', 'tbl_attribute_values.stock')
+        //     ->get();
      
-        return view('admin/product_atr', compact('product_atr'));
+        return view('admin/product_atr', compact('product_attributes'));
     }
 
     public function indexAddProductAttr()

@@ -42,47 +42,17 @@
 
     {
         "icon": "fas fa-users",
-        "title": "Manage Users",
+        "title": "Manage Seller",
         "children": [
             {
                 "icon": "fas fa-angle-right",
-                "title": "Active User",
-                "url": "admin/user/list?status=1"
+                "title": "Manage  Seller",
+                "url": "admin/seller"
             },
             {
                 "icon": "fas fa-angle-right",
-                "title": "Inactive user",
-                "url": "admin/user/list?status=0"
-            },
-            {
-                "icon": "fas fa-angle-right",
-                "title": "Deleted user",
-                "url": "admin/user/list?deleted_at=true"
-            },
-            {
-                "icon": "fas fa-angle-right",
-                "title": "Type 10 user",
-                "url": "admin/user/list?general_user_type=10"
-            },
-            {
-                "icon": "fas fa-angle-right",
-                "title": "Type 300 user",
-                "url": "admin/user/list?general_user_type=300"
-            },
-            {
-                "icon": "fas fa-angle-right",
-                "title": "All Admin",
-                "url": "admin/user/list?user_type=1"
-            },
-            {
-                "icon": "fas fa-angle-right",
-                "title": "All Agent",
-                "url": "admin/user/list?user_type=2"
-            },
-            {
-                "icon": "fas fa-angle-right",
-                "title": "All User",
-                "url": "admin/user/list?user_type=3"
+                "title": "Create Seller",
+                "url": "admin/seller/add"
             }
         ]
     },

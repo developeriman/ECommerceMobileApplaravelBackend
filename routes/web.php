@@ -7,6 +7,7 @@ use App\Http\Controllers\BrandController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\SellerController;
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\InfoModuleController;
 use App\Http\Controllers\Theme\DashboardController;
 use App\Http\Controllers\ProductAttributeController;
@@ -48,6 +49,15 @@ Route::group(['prefix' => 'admin'],function(){
         Route::post('/brand/update', [BrandController::class, 'updateBrand'])->name('updateBrand');
         Route::get('/brand/delete/{id}', [BrandController::class, 'brandDelete'])->name('deleteBrand');
 
+
+        //Category 
+        Route::get('/category', [CategoryController::class, 'index'])->name('indexCategory');
+        Route::get('/category/add', [CategoryController::class, 'indexAddCategory'])->name('indexAddCategory');
+        Route::post('/category/store', [CategoryController::class, 'storeCategory'])->name('storeCategory');
+        Route::get('/category/edit/{id}', [CategoryController::class, 'indexEditCategory']);
+        Route::post('/category/update', [CategoryController::class, 'updateCategory'])->name('updateCategory');
+        Route::get('/category/delete/{id}', [CategoryController::class, 'CategoryDelete'])->name('deleteCategory');
+        
         //Product Attribute 
         Route::get('/product_atr', [ProductAttributeController::class, 'index'])->name('ProductAttribute');
         Route::get('/product_atr/add', [ProductAttributeController::class, 'indexAddProductAttr'])->name('indexAddProductAttribute');
