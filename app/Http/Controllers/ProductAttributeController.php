@@ -18,17 +18,17 @@ class ProductAttributeController extends Controller
 {
     public function index()
     {
-        $product_attributes =DB::table('tbl_product_attribute')->get();
+        $product_attributes = DB::table('tbl_product_attribute')->get();
 
-        foreach($product_attributes as $value){
-            $product_attributes_values = DB::table('tbl_attribute_values')->where('attribute_id',$value->id)->get();
-            $value->attributes_values = $product_attributes_values; 
+        foreach ($product_attributes as $value) {
+            $product_attributes_values = DB::table('tbl_product_attributes')->where('attribute_id', $value->id)->get();
+            $value->attributes_values = $product_attributes_values;
         }
         // $product_atr  = DB::table('tbl_product_attribute')
         //     ->leftJoin('tbl_attribute_values', 'tbl_product_attribute.id', '=', 'tbl_attribute_values.attribute_id')
         //     ->select('tbl_product_attribute.*', 'tbl_attribute_values.value', 'tbl_attribute_values.price', 'tbl_attribute_values.stock')
         //     ->get();
-     
+
         return view('admin/product_atr', compact('product_attributes'));
     }
 
@@ -142,7 +142,8 @@ class ProductAttributeController extends Controller
     {
         $productAttributeValue = AttributeValue::where('id', $id)->first();
         return view('admin/edit-product_atr-setting', [
-            'productAttributeValue' => $productAttributeValue]);
+            'productAttributeValue' => $productAttributeValue
+        ]);
     }
     public function updateSettingAttributes(Request $request)
     {
@@ -157,7 +158,7 @@ class ProductAttributeController extends Controller
             return $e;
         }
     }
-    
+
     public function DeleteSettingAttributes($id)
     {
         AttributeValue::findOrFail($id)->delete();

@@ -56,26 +56,21 @@
             }
         ]
     },
-
-    {
-        "icon": "fab fa-accusoft",
-        "title": "Manage Features",
-        "url": "admin/featured/create"
-    },
     {
         "icon": "fas fa-vr-cardboard",
-        "title": "Manage Banner",
+        "title": "Manage Category",
         "children": [
-            {
+             {
                 "icon": "fas fa-angle-right",
-                "title": "Create Banner",
-                "url": "admin/banner/create"
+                "title": "Mange Category ",
+                "url": "admin/category"
             },
             {
                 "icon": "fas fa-angle-right",
-                "title": "Banner List",
-                "url": "admin/banner/list"
+                "title": "Create Category",
+                "url": "admin/category/add"
             }
+           
         ]
     },
 

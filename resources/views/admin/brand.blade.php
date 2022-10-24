@@ -18,8 +18,9 @@
                     <tr>
                         <th style="width: 20%;">#</th>
                         <th style="width: 10%;">Name</th>
+                        <th style="width: 10%;">Category</th>
                       
-                        <th style="width: 40%; text-align: center;">Action</th>
+                        <th style="width: 20%; text-align: center;">Action</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -27,6 +28,7 @@
                     <tr>
                         <td>{{ $data->id }}</td>
                         <td>{{ $data->name }}</td>
+                         <td>{{optional($data->category)->category_name}}</td>
                         <td style="text-align: center;">
                             <a class="btn btn-info actbtn" title="edit" href="{{ url('admin/brand/edit/'.$data->id) }}"><i class="fas fa-edit" title="edit"></i></a>
                             <a class="btn btn-danger actbtn" href="{{ url('/admin/brand/delete/'.$data->id) }}"><i class="fas fa-trash" name="delete"></i></a>

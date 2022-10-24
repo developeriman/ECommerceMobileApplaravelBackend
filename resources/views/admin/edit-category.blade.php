@@ -9,16 +9,16 @@
         </div>
         <div class="card-body">
             <div class="example">
-                <form method="post" action="{{ route('updateCategory') }}">
+                <form method="post" action="{{ route('updateCategory') }}" enctype="multipart/form-data">
                     @csrf
                     <div class="row">
                         <div class="mb-3 col-6">
-                            <label for="exampleInputEmail1" class="form-label">Category Name</label>
-                            <input type="text" style="color: black" name="cateory_name"
+                            <label for="exampleInputEmail1" class="form-label" style="color:black">Category Name</label>
+                            <input type="text" style="color: black" name="category_name"
                                 value="{{ $category->category_name }}" class="form-control" id="exampleInputEmail1"
                                 aria-describedby="emailHelp">
-                            @if ($errors->has('cateory_name'))
-                                <span class="text-danger ">{{ $errors->first('cateory_name') }}</span>
+                            @if ($errors->has('category_name'))
+                                <span class="text-danger ">{{ $errors->first('category_name') }}</span>
                             @endif
                         </div>
                         <div class="mb-3 col-6">

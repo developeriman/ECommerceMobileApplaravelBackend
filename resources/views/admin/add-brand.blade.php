@@ -20,12 +20,25 @@
                                 <span class="text-danger">{{ $errors->first('name') }}</span>
                             @endif
                         </div>
-                        <div class="row">
-                            <div class="mb-3 col-6">
-                    <button type="submit" class="btn btn-primary ml-3">Submit</button>
-
-                            </div>
+                        <div class="mb-3 col-6">
+                            <label for="category_name" class="control-label mb-1">Category Name</label>
+                            <select id="category_name" class="form-control" name="category_id">
+                                <option selected>Select Seller</option>
+                                @foreach ($category as $data)
+                                    <option value="{{ $data->id }}">{{ $data->category_name }}</option>
+                                @endforeach
+                            </select>
+                            @if ($errors->has('category_name'))
+                                <span class="text-danger">{{ $errors->first('category_name') }}</span>
+                            @endif
                         </div>
+                    </div>
+                    <div class="row">
+                        <div class="mb-3 col-6">
+                            <button type="submit" class="btn btn-primary ml-3">Submit</button>
+
+                        </div>
+                    </div>
 
                 </form>
             </div>

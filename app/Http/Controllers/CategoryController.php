@@ -55,10 +55,14 @@ class CategoryController extends Controller
         return view('admin/edit-category', compact('category'));
     }
 
-    public function updateCategory(CategoryRequest $request)
+    public function updateCategory(Request $request)
     {
+
+        DB::beginTransaction();
+        // $adminInfo = Auth::user();
         $category = new Category();
         try {
+         
             if ($request->hasFile('category_icon')) {
                 $path = 'upload/logo' . $category->category_icon;
                 if (File::exists($path)) {
@@ -70,12 +74,15 @@ class CategoryController extends Controller
             $ext = $file->getClientOriginalExtension();
             $fileName_image = time() . '.' . $ext;
             $file->move('upload/logo', $fileName_image);
+
             Category::where('id', $request->id)->update([
-                'category_name' => $request->category_name,
-                'category_icon'=>$request->category_icon
+                'category_name'=>$request->category_name,
+                'category_icon' =>$fileName_image 
             ]);
+            DB::commit();
             return redirect('admin/category');
         } catch (\Exception $e) {
+            DB::rollback();
             return $e;
         }
     }

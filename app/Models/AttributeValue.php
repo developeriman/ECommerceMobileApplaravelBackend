@@ -8,5 +8,5 @@ use Illuminate\Database\Eloquent\Model;
 class AttributeValue extends Model
 {
     use HasFactory;
-    public $table = 'tbl_attribute_values'; 
+    public $table = 'tbl_product_attributes'; 
 }
